@@ -10,3 +10,12 @@
 .sidebar-bottom>small,.map-footer,.table-note,th,footer,.breadcrumb{color:#53634f}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media print{.sidebar,.topbar,.demo-note,footer,button,.export-buttons,.notice,.training-badge{display:none!important}.shell{width:100%;margin:0}main{padding:0}.response-layout{display:block}.brief{margin-top:20px;break-inside:avoid}.action{break-inside:avoid}.action-list{border:0;padding:0}.notes textarea{height:180px}.page-heading:after{content:'TRAINING EXERCISE — Synthetic data. Not a forecast or evacuation order.';font-size:12px}.page-heading{display:block}.brief:after{content:'Illustrative model without terrain, hydrology, or atmospheric validation. Follow official hazard maps and local authority instructions.';display:block;margin-top:20px;font-size:11px}}
+.volcano-information{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:32px;margin-top:28px;padding:26px 0;border-block:1px solid var(--border)}
+.volcano-information p{font-size:13px;max-width:72ch;margin-top:12px;overflow-wrap:anywhere}
+.volcano-information .information-source{font-size:11px;color:var(--muted);margin:7px 0 16px}
+.volcano-information a{display:inline-flex;align-items:center;gap:5px;text-decoration:underline;font-size:12px;margin-top:15px}
+.volcano-context{color:#4d664e}.volcano-context h3{color:var(--ink)}.volcano-context h3:not(:first-child){margin-top:24px}
+.catalog-pagination{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:12px}.catalog-pagination .table-note{margin:0}.catalog-pagination>div{display:flex;gap:8px}
+.brand img{width:29px;height:29px;flex-shrink:0}
+@media(max-width:850px){.brand img{width:24px;height:24px}}
+@media(max-width:620px){.volcano-information{grid-template-columns:1fr;gap:25px;padding:23px 0}.catalog-pagination{align-items:flex-start;flex-direction:column}}

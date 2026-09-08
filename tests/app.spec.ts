@@ -23,3 +23,20 @@ test('atlas, scenario, response, persistence, and community flow',async({page},t
  expect(errors).toEqual([]);
 });
 test('bad import reports actionable error',async({page})=>{await page.goto('/');await page.getByRole('button',{name:/Saved scenarios/}).click();await page.locator('input[type=file]').setInputFiles({name:'bad.json',mimeType:'application/json',buffer:Buffer.from('{"version":99}')});await expect(page.getByRole('status')).toContainText('invalid');});
+test('sourced geology, full catalog pagination, and expanded search',async({page},testInfo)=>{
+ await page.goto('/');
+ await expect(page.getByRole('heading',{name:'About Merapi',exact:true})).toBeVisible();
+ await expect(page.locator('.geology')).toContainText('Smithsonian GVP');
+ await expect(page.locator('.geology>p').last()).not.toBeEmpty();
+ await expect(page.getByRole('link',{name:'Read the source record'})).toHaveAttribute('href',/vn=263250/);
+ expect(await page.locator('.brand img').evaluate(el => (el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+ await page.getByRole('button',{name:'Next page',exact:true}).click();
+ await expect(page.locator('.catalog-pagination')).toContainText('61–120');
+ await page.getByRole('textbox',{name:'Search volcanoes'}).fill('  mérapi indonesia ');
+ await expect(page.getByRole('button',{name:'Simulate Merapi',exact:true})).toBeVisible();
+ await expect(page.getByRole('button',{name:'Previous page',exact:true})).toBeDisabled();
+ await expect(page.locator('.catalog-pagination')).toContainText('1–');
+ await page.getByRole('textbox',{name:'Search volcanoes'}).fill('');
+ await page.screenshot({path:`/private/tmp/ashline-information-${testInfo.project.name}.png`,fullPage:true});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+});

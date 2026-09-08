@@ -120,6 +120,8 @@ Desktop uses a fixed 226px sidebar and a 78px top bar. Main content has 37px hor
 
 At 1150px the sidebar and gutters tighten. At 850px navigation becomes a horizontal icon strip and the sidebar returns to document flow. At 620px work areas become a single column; simulator results and the response brief precede their supporting controls. Mobile tables scroll within their container. Above 1500px the atlas map and dossier receive more room.
 
+The atlas geology section uses a broad source-summary column and a narrower educational-context column (1.65:1), separated by a 32px gap and framed by horizontal borders. At 620px it stacks with a 25px gap. Catalog pagination places the result range opposite the page controls, then stacks them at the same mobile breakpoint.
+
 Print removes navigation and action controls, stacks the response content, and includes explicit training and model limitations.
 
 ## Elevation & Depth
@@ -130,7 +132,7 @@ Depth comes from white, mineral, and sage surfaces separated by thin borders. Ca
 
 ## Shapes
 
-Controls have gently rounded corners, with slightly larger radii for navigation and work panels. Circular dots indicate map selections and legend categories. Maps clip inside rounded panels. Lucide line icons support labeled actions; schematic hazard shapes are drawn directly in SVG.
+Controls have gently rounded corners, with slightly larger radii for navigation and work panels. Circular dots indicate map selections and legend categories. Maps clip inside rounded panels. Lucide line icons support labeled actions; schematic hazard shapes are drawn directly in SVG. The custom Ashline SVG mark combines a forest volcano outline and strata with two vermilion ash strokes. The same asset serves the favicon and sidebar brand, where it measures 29px and reduces to 24px at the horizontal-navigation breakpoint.
 
 ## Components
 
@@ -140,6 +142,9 @@ Controls have gently rounded corners, with slightly larger radii for navigation 
 - **Training badge and notice:** Muted ochre badges and pale informational strips keep the exercise context visible without competing with the working area. Status notices appear inline and can be dismissed.
 - **Dossier and brief:** Sage panels hold selected context, definition-list measurements, source access, and the next action. These complement the larger working canvas.
 - **Catalog:** Thin row dividers, a tinted sticky header, pale selected rows, and explicit empty results support catalog scanning. Name buttons provide a keyboard-accessible selection path alongside the map.
+- **Sourced geology and context:** An open section with thin horizontal borders holds the selected volcano’s summary, visible Smithsonian provenance and record link. Readable 13px paragraphs are limited to 72 characters per line; source metadata uses muted 11px text and underlined links use 12px text. The adjacent context states its educational scope and separates historical catalog facts from current activity guidance. Missing summaries receive explicit fallback copy.
+- **Catalog pagination:** Secondary Previous page and Next page buttons accompany a live result-range status beneath the table. Pages contain up to 60 matches, with boundary controls disabled; search and country changes return to the first page.
+- **Brand mark:** Reuse `public/ashline.svg` for the sidebar and favicon. The sidebar image is decorative beside the text wordmark; its forest and vermilion strokes extend the existing palette without introducing a separate icon style for actions.
 - **Hazard diagram:** A gridded schematic with distance rings, a wind-oriented ash ellipse, a red pyroclastic radius, and a dashed blue lahar envelope. Numeric keys and limitations sit below the diagram.
 
 Interface updates are immediate. The score track has no animated transition, and reduced-motion preferences disable transitions globally.
