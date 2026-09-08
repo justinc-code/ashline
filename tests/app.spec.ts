@@ -1,0 +1,25 @@
+import { test,expect } from '@playwright/test';
+test('atlas, scenario, response, persistence, and community flow',async({page},testInfo)=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('/');await expect(page.getByRole('heading',{name:'A world of volcanoes.'})).toBeVisible();
+ await page.screenshot({path:`/private/tmp/ashline-${testInfo.project.name}.png`,fullPage:true});
+ await expect(page.locator('body')).not.toHaveJSProperty('scrollWidth',0);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+ await page.getByRole('textbox',{name:'Search volcanoes'}).fill('Merapi');await expect(page.getByRole('button',{name:'Simulate Merapi',exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'Simulate Merapi',exact:true}).click();
+ await expect(page.getByRole('heading',{name:'Explore what could happen.'})).toBeVisible();
+ await page.getByRole('slider',{name:/Wind toward/}).fill('270');
+ await page.evaluate(()=>window.scrollTo(0,0));
+ if(testInfo.project.name==='desktop')expect(await page.locator('.sidebar').evaluate(el=>el.getBoundingClientRect().top)).toBe(0);
+ await page.screenshot({path:`/private/tmp/ashline-simulator-${testInfo.project.name}.png`,fullPage:true});
+ await page.getByRole('button',{name:'Prepare response'}).click();
+ await page.getByPlaceholder('Record decisions, contacts, or questions for your exercise…').fill('Exercise Alpha');
+ await page.getByRole('button',{name:'Save scenario',exact:true}).click();await expect(page.getByRole('status')).toContainText('saved');
+ const download=page.waitForEvent('download');await page.getByRole('button',{name:'JSON',exact:true}).click();expect((await download).suggestedFilename()).toMatch(/ashline-.*json/);
+ await page.getByRole('button',{name:/Saved scenarios/}).click();await expect(page.getByRole('button',{name:'Open',exact:true})).toBeVisible();
+ await page.reload();await page.getByRole('button',{name:/Saved scenarios/}).click();await page.getByRole('button',{name:'Open',exact:true}).click();
+ await page.getByRole('button',{name:'Prepare response'}).click();await expect(page.getByRole('textbox')).toHaveValue('Exercise Alpha');
+ await page.getByRole('button',{name:'Community',exact:true}).click();await expect(page.getByRole('heading',{name:'Your readiness checklist'})).toBeVisible();
+ expect(errors).toEqual([]);
+});
+test('bad import reports actionable error',async({page})=>{await page.goto('/');await page.getByRole('button',{name:/Saved scenarios/}).click();await page.locator('input[type=file]').setInputFiles({name:'bad.json',mimeType:'application/json',buffer:Buffer.from('{"version":99}')});await expect(page.getByRole('status')).toContainText('invalid');});
