@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-08T02:19:45.741Z",
+  "generatedAt": "2026-09-08T22:55:18.663348Z",
   "title": "Design System: Ashline",
   "extensions": {
     "colorMeta": {
@@ -240,7 +240,7 @@
       "kind": "input",
       "refersTo": "search",
       "description": "Search names, countries, or catalog IDs.",
-      "html": "<label class=\"ds-search\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/></svg><input aria-label=\"Search volcanoes\" placeholder=\"Search volcano or country…\"/></label>",
+      "html": "<label class=\"ds-search\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/></svg><input aria-label=\"Search volcanoes\" placeholder=\"Search volcano or country\u2026\"/></label>",
       "css": ".ds-search{display:inline-flex;align-items:center;gap:8px;padding:0 11px;background:#fff;color:#778875;border:1px solid var(--border,#dce3dc);border-radius:5px}.ds-search input{font:10px Manrope,Arial,sans-serif;color:var(--ink,#293d35);background:none;border:0;padding:10px 0;width:190px}.ds-search input:focus-visible{outline:3px solid #b77834;outline-offset:3px}"
     },
     {
@@ -264,6 +264,27 @@
       "description": "Selected volcano context beside the map.",
       "html": "<section class=\"ds-dossier\"><h2>Merapi</h2><p>Indonesia</p><dl><div><dt>Volcano type</dt><dd>Stratovolcano</dd></div></dl><button>Build a scenario</button></section>",
       "css": ".ds-dossier{font-family:Manrope,Arial,sans-serif;color:var(--ink,#293d35);background:#e8eee2;border:1px solid #d7e1d0;border-radius:9px;padding:22px 20px;max-width:267px}.ds-dossier h2{font-size:27px;font-weight:750;line-height:1.3;letter-spacing:-.9px;margin:15px 0 0}.ds-dossier p{font-size:10px;color:#4d664e;margin:6px 0 0}.ds-dossier dl{margin:20px 0;font-size:10px}.ds-dossier dl div{display:flex;justify-content:space-between;gap:14px;margin:13px 0}.ds-dossier dt{color:#687b68}.ds-dossier dd{margin:0;text-align:right;font-weight:650}.ds-dossier button{font-family:Manrope,Arial,sans-serif;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--green,#294e3e);color:#fff;padding:12px 15px;border:0;border-radius:5px;font-size:11px;font-weight:650;min-height:40px;width:100%}.ds-dossier button:hover{filter:brightness(.94)}.ds-dossier button:focus-visible{outline:3px solid #b77834;outline-offset:3px}"
+    },
+    {
+      "name": "Sourced Geology and Context",
+      "kind": "custom",
+      "description": "Source summary and educational context beneath the atlas; stacks on mobile.",
+      "html": "<section class=\"ds-geology\"><div><h2>About this volcano</h2><p class=\"ds-provenance\">Smithsonian GVP \u00b7 Catalog snapshot \u00b7 Record ID</p><p>No geological summary is available in this catalog snapshot. Open the Smithsonian record for further information.</p><a href=\"https://volcano.si.edu/\" target=\"_blank\" rel=\"noreferrer\">Read the source record</a></div><aside><h3>Volcano context</h3><p><strong>General educational context.</strong> This is not a site-specific hazard assessment.</p><h3>Current activity</h3><p>Not available in this offline catalog.</p></aside></section>",
+      "css": ".ds-geology{font-family:Manrope,Arial,sans-serif;color:var(--ink,#293d35);display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:32px;margin-top:28px;padding:26px 0;border-block:1px solid var(--border,#dce3dc)}.ds-geology h2{font-size:17px;letter-spacing:-.3px}.ds-geology h3{font-size:14px;color:var(--ink,#293d35)}.ds-geology p{font-size:13px;line-height:1.7;max-width:72ch;margin-top:12px;overflow-wrap:anywhere}.ds-geology .ds-provenance{font-size:11px;color:var(--muted,#63746b);margin:7px 0 16px}.ds-geology a{display:inline-flex;color:inherit;text-decoration:underline;font-size:12px;margin-top:15px}.ds-geology a:focus-visible{outline:3px solid #b77834;outline-offset:3px}.ds-geology aside{color:#4d664e}.ds-geology h3:not(:first-child){margin-top:24px}@media(max-width:620px){.ds-geology{grid-template-columns:1fr;gap:25px;padding:23px 0}}"
+    },
+    {
+      "name": "Catalog Pagination",
+      "kind": "custom",
+      "description": "Result-range status and secondary page controls; boundary actions are disabled.",
+      "html": "<div class=\"ds-pagination\"><p role=\"status\">Showing 1\u201360 of 1,214 matches</p><div><button disabled>Previous page</button><button>Next page</button></div></div>",
+      "css": ".ds-pagination{font-family:Manrope,Arial,sans-serif;display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:12px}.ds-pagination p{font-size:9px;color:#53634f;line-height:1.7;margin:0}.ds-pagination>div{display:flex;gap:8px}.ds-pagination button{font-family:inherit;cursor:pointer;font-size:11px;padding:9px 12px;background:#fff;color:var(--ink,#293d35);border:1px solid var(--border,#dce3dc);border-radius:5px;min-height:36px}.ds-pagination button:hover{filter:brightness(.94)}.ds-pagination button:focus-visible{outline:3px solid #b77834;outline-offset:3px}.ds-pagination button:disabled{opacity:.4;cursor:not-allowed}@media(max-width:620px){.ds-pagination{align-items:flex-start;flex-direction:column}}"
+    },
+    {
+      "name": "Ashline Brand Mark",
+      "kind": "custom",
+      "description": "Custom forest volcano and strata with vermilion ash; shared sidebar mark and favicon from public/ashline.svg.",
+      "html": "<svg class=\"ds-mark\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 40 40\" fill=\"none\">\n  <title>Ashline</title>\n  <path d=\"M4 33 15 15h4l3 5h4l10 13H4Z\" stroke=\"#294e3e\" stroke-width=\"2.8\" stroke-linejoin=\"round\"/>\n  <path d=\"m11 28 7-2 6 2h8\" stroke=\"#294e3e\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  <path d=\"M20 11c-4-3 5-4 1-8M26 13c-2-2 4-3 3-5\" stroke=\"#b84e35\" stroke-width=\"2.6\" stroke-linecap=\"round\"/>\n</svg>",
+      "css": ".ds-mark{width:29px;height:29px;flex-shrink:0}@media(max-width:850px){.ds-mark{width:24px;height:24px}}"
     }
   ],
   "narrative": {

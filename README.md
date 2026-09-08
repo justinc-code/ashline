@@ -28,3 +28,9 @@ Smithsonian Global Volcanism Program Holocene Volcanoes, official GeoServer WFS 
 Endpoint: `https://webservices.volcano.si.edu/geoserver/GVP-VOTW/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=GVP-VOTW:Smithsonian_VOTW_Holocene_Volcanoes&outputFormat=application/json`
 
 Refresh by downloading the endpoint JSON and running `node scripts/catalog.mjs /path/to/response.json`. Refresh rejects incomplete results. Natural Earth 110m land polygons are public domain, obtained from `nvkelso/natural-earth-vector/geojson/ne_110m_land.geojson`. Data and Manrope font are bundled for runtime network independence. Manrope is licensed under SIL OFL; license included with the font.
+
+## Volcano information
+
+The atlas displays each record’s attributed geological summary and snapshot date, with links to the Smithsonian record and weekly reports. General context explains the limitations associated with the volcano’s setting; it does not infer current activity or local hazard levels. Search accepts multiple terms, ignores case and accents, and covers names, countries, regions, types, IDs, and geological summaries. Previous/next controls make every result accessible in pages of 60.
+
+The custom Ashline volcano-and-ash mark lives in `public/ashline.svg` and is shared by the sidebar and browser favicon.
