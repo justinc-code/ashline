@@ -47,7 +47,6 @@ The simulator includes a lazy-loaded Three.js/WebGL scene. Drag to orbit, scroll
 
 VEI changes plume size; wind speed/direction bends ash. Geographic elevation terrain loads by default; an explicitly selected procedural preview remains available if elevation data cannot load. Stylized ground flows are disabled on the DEM because they do not model terrain-driven transport. Submarine entries display an explicit unsupported-state explanation. WebGL failure offers recovery while the 2D map and other workflows remain available.
 
-
 ## Geographic elevation terrain
 
 The 3D view loads Mapzen/Tilezen Terrarium elevation tiles from the public AWS terrain dataset, centered on the selected GVP coordinates. Choose a 10, 20, or 40 km square patch; a 257 × 257 grid samples geodesic offsets with bilinear interpolation. Pixel centers and tile boundaries are handled explicitly, including longitude wrapping. RGB decoding is `(R * 256 + G + B / 256) - 32768` meters. Tiles use zoom 12 for 10/20 km patches and zoom 11 for 40 km; displayed mesh spacing is approximately 39/78/156 m, respectively. Tile pixel size is shown separately and is not an accuracy claim. Polar patches beyond Web Mercator coverage and patches needing over 64 tiles are rejected. Missing or invalid samples reject the entire patch; no fabricated elevations fill gaps.
@@ -59,7 +58,6 @@ Hazard outlines retain their existing kilometer distances at the fixed horizonta
 Twelve source tiles covering the default Merapi 20 km patch are bundled for offline startup. `public/terrain/manifest.json` records URLs, source raster identifiers, download time, and source modification headers. `python3 scripts/cache-terrain.py` refreshes this bounded cache. Other patches load directly from `https://elevation-tiles-prod.s3.amazonaws.com/terrarium` with four concurrent requests, 15-second tile timeouts, cancellation on selection changes, and a bounded memory cache. Public volcano coordinates determine requested tiles; no user-entered location is sent.
 
 Sources: [AWS terrain dataset](https://registry.opendata.aws/terrain-tiles/), [Terrarium format](https://github.com/tilezen/joerd/blob/master/docs/formats.md). Merapi tiles identify USGS SRTM source `srtm/S08E110.tif`. Full regional provider attribution is bundled in `public/terrain/ATTRIBUTION.md` and linked in the scene. Download dates are not survey dates.
-
 
 ## Ash transport and settling
 
