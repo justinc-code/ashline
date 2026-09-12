@@ -39,6 +39,9 @@ export const actions = [
   {phase:'Respond',role:'Incident commander',title:'Rehearse evacuation decisions',text:'Exercise triggers with the responsible authorities. Check official routes and shelter capacity; never use these illustrative envelopes to choose a route.'},
   {phase:'Respond',role:'Public information officer',title:'Reduce ash exposure',text:'Plan indoor shelter, closed windows, protected water supplies, and well-fitting particulate masks when ash exposure cannot be avoided. Coordinate with aviation authorities.'},
   {phase:'Respond',role:'Field coordinator',title:'Keep clear of river valleys',text:'Lahars can occur during or after eruptions. Rehearse rapid movement to higher ground away from channels under local guidance.'},
+  {phase:'Recover',role:'Recovery lead',title:'Check toxic gases before re-entry',text:'Coordinate qualified SO₂, CO₂, and oxygen monitoring with local authorities. Avoid low areas and enclosed spaces until cleared. Particulate masks do not protect against gases.'},
+  {phase:'Recover',role:'Recovery lead',title:'Coordinate ash cleanup and services',text:'Arrange structural checks before roof access, protect water intakes, and follow local ash collection and disposal guidance. Limit resuspension and prioritize health facilities and essential access.'},
+  {phase:'Recover',role:'Field coordinator',title:'Recheck flow-affected access',text:'Confirm official exclusion zones, damaged crossings, and unstable deposits before sending crews. Rain can remobilize ash into lahars after the eruption; lava path sketches are exercise assumptions, not cleared access routes.'},
   {phase:'Recover',role:'Recovery lead',title:'Plan a safe return',text:'Await official clearance. Arrange structural and water checks, careful ash removal, health support, and a review of the response.'}
 ];
 export function parseScenario(raw:unknown,ids:Set<string>):SavedScenario {
