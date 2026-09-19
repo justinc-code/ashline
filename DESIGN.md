@@ -93,7 +93,7 @@ The palette resembles pale stone, green field notes, and mineral hazard pigments
 ### Primary
 
 - **Forest green:** Primary actions and native range/checkbox accents.
-- **Vermilion:** Brand punctuation and map selection emphasis. The SVG map uses a closely related vermilion for its selected marker and leader line.
+- **Vermilion:** Brand punctuation and map selection emphasis. The SVG map uses vermilion for its selected marker and ring.
 
 ### Secondary
 
@@ -120,6 +120,10 @@ Desktop uses a fixed 226px sidebar and a 78px top bar. Main content has 37px hor
 
 At 1150px the sidebar and gutters tighten. At 850px navigation becomes a horizontal icon strip and the sidebar returns to document flow. At 620px work areas become a single column; simulator results and the response brief precede their supporting controls. Mobile tables scroll within their container. Above 1500px the atlas map and dossier receive more room.
 
+The atlas switches to one column between 621px and 1050px, placing the dossier beneath the map with its facts and actions in two internal columns. At 620px and below, search occupies a full row and its results appear inline above the map; country selection and Fit matches share the following row. Map navigation becomes a horizontal strip of 44px-tall buttons, and nearby choices open beneath it. The phone search input uses 16px text.
+
+The map canvas is 460px tall on desktop and 360px on phones. Expand map gives the atlas the full content width and moves the dossier below it; the expanded canvas uses 70vh capped at 680px, with a 460px minimum. On phones it uses 65svh with a 420px minimum. Search, filters, and selected context remain in the same page flow.
+
 The atlas geology section uses a broad source-summary column and a narrower educational-context column (1.65:1), separated by a 32px gap and framed by horizontal borders. At 620px it stacks with a 25px gap. Catalog pagination places the result range opposite the page controls, then stacks them at the same mobile breakpoint.
 
 Print removes navigation and action controls, stacks the response content, and includes explicit training and model limitations.
@@ -139,6 +143,9 @@ Controls have gently rounded corners, with slightly larger radii for navigation 
 - **Buttons:** Forest primary actions, white bordered secondary actions, and compact text actions. Primary controls have a 40px minimum height; secondary controls have a 36px minimum. Hover darkens buttons slightly; keyboard focus uses a visible amber outline. Disabled map controls lower opacity.
 - **Navigation:** Icon-and-label rows receive a pale green active fill. The audience selector uses a white selected segment within a muted track. Mobile main navigation retains accessible text while visually showing icons.
 - **Inputs:** Search uses a bordered white wrapper and inline icon; country selection stays native. Notes use a pale editable surface and vertical resizing. Range controls display their current value and unit above the track.
+- **Atlas search and filters:** A bordered map search combobox shows up to eight ranked matches with names, countries, and volcano types. Arrow keys move through results; Enter or pointer selection selects the volcano, centers it at 6× zoom, closes results, and focuses the map. Search and native country filters stay synchronized with the catalog and reset its pagination. Country changes fit the remaining matches; Fit matches frames them on demand. Match counts and explicit empty states support recovery through Clear filters.
+- **Atlas camera and wayfinding:** Region shortcuts move the camera without changing filters or selection. White, bordered in-map controls provide zoom from 1× to 12×, world reset, expand/collapse, and Locate for the selected volcano. Grid starts off. At zoom above 1.05×, map canvases at least 480px wide show a world overview with a viewport rectangle; selecting it resets the camera. Drag pans, pinch or double-click zooms, and Ctrl/⌘-scroll zooms around the pointer. With the map focused, arrow keys pan, +/− zoom, Home resets, Enter selects near the visible center crosshair, and Escape closes nearby choices. Map guide exposes these instructions on demand.
+- **Atlas selection and description:** The nearest marker is selected immediately; crowded locations also open a scrollable nearby picker with an explicit selected state and Zoom to nearby. Selection updates the dossier and a pale mineral preview beneath the map, with an 18px name, country and coordinates, and a two-line summary. Read full description moves focus to the sourced description heading below; the map footer links to Browse catalog. A legend and visible-match count maintain context. Selection persists outside the current view or filters with explanatory text and a Locate or Show all volcanoes action; Locate is disabled while the selected volcano is filtered out.
 - **Training badge and notice:** Muted ochre badges and pale informational strips keep the exercise context visible without competing with the working area. Status notices appear inline and can be dismissed.
 - **Dossier and brief:** Sage panels hold selected context, definition-list measurements, source access, and the next action. These complement the larger working canvas.
 - **Catalog:** Thin row dividers, a tinted sticky header, pale selected rows, and explicit empty results support catalog scanning. Name buttons provide a keyboard-accessible selection path alongside the map.
@@ -176,7 +183,7 @@ Interface updates are immediate. The score track has no animated transition, and
 
 ### Atlas selection and terrain relief
 
-Atlas markers use 5px visible dots with nearest-point hit testing within 24px (32px for touch). Nearby choices include Zoom to nearby, while selection updates the description preview immediately.
+Atlas markers use a visible radius of 4.5px, reduced to 3.2px for phone overview maps (canvas narrower than 480px and zoom below 2×), with nearest-point hit testing within 24px (32px for touch). Hover increases the radius to 7px; selection uses a 5px vermilion dot within a 12px ring and a visible name. Nearby choices include Zoom to nearby, while selection updates the description preview immediately.
 
 Geographic terrain uses a continuous elevation ramp (#527b65, #85957b, #b3ac8a, #8c8479, #dedbd0), with a labeled minimum/maximum legend; these colors encode relative elevation, never land cover. Optional contour lines interpolate the terrain mesh at the displayed meter interval. Directional relief lighting and responsive camera framing reveal slopes without changing measured elevations. True vertical scale remains the default.
 

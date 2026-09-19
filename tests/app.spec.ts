@@ -628,7 +628,7 @@ test("global reference map supports search, focus, pan, pinch, and selection", a
   await map.press("Home");
   await expect(page.getByLabel("Global map zoom")).toHaveText("1.0×");
   await page
-    .getByRole("textbox", { name: "Search map volcanoes", exact: true })
+    .getByRole("combobox", { name: "Search map volcanoes", exact: true })
     .fill("Merapi");
   await expect(
     page.getByRole("textbox", { name: "Search volcanoes", exact: true }),
@@ -678,7 +678,7 @@ test("global reference map supports search, focus, pan, pinch, and selection", a
   await cdp.detach();
   await expect(page.getByLabel("Global map zoom")).toHaveText("1.8×");
   await page
-    .getByRole("textbox", { name: "Search map volcanoes", exact: true })
+    .getByRole("combobox", { name: "Search map volcanoes", exact: true })
     .fill("no-such-volcano-xyz");
   await expect(page.locator(".atlas-empty")).toBeVisible();
   await expect(

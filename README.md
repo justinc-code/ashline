@@ -79,9 +79,13 @@ Recovery checklist prompts cover qualified gas/oxygen monitoring and official re
 
 ## Interactive global reference map
 
-The atlas uses the bundled Natural Earth land geometry and GVP catalog offline. Drag to pan, pinch or double-click to zoom, or hold Ctrl/Command while scrolling for pointer-centered zoom (1×–12×). Ordinary scrolling continues down the page. Keyboard arrows pan; +/− zoom; Enter opens volcanoes near the center crosshair; Home resets. Markers retain their screen size while zooming. Nearby overlapping markers open a scrollable selection list rather than choosing an arbitrary volcano.
+The atlas uses the bundled Natural Earth land geometry and GVP catalog offline. Search by volcano, country, region, catalog number, or geological description. Suggestions prioritize name matches; click a result or use the arrow keys and Enter to select and center it. Search and country filters stay synchronized with the catalog. Changing country frames the matching volcanoes automatically; Fit matches frames the current results, and Clear filters restores the full catalog and world view.
 
-The map search shares the catalog query. Fit matches frames the current search/country results, Focus selected centers the selected volcano, and Expand map uses the full workspace width while keeping the dossier below it. Filtered-out and off-screen selections are explicit. Grid visibility, visible result counts, pointer coordinates, and hover names support orientation. Coastlines remain approximate at high zoom; this is a reference atlas, not a street or hazard-routing map.
+Jump directly to North America, South America, Europe, Africa, Asia, or Oceania with the region selector. These shortcuts change the camera, not the filters. Drag to pan, pinch or double-click to zoom, or hold Ctrl/Command while scrolling for pointer-centered zoom (1×–12×). Ordinary scrolling continues down the page. Keyboard arrows pan; +/− zoom; Enter selects near the center crosshair; Home restores the world view; Escape dismisses nearby choices. Camera bounds keep the geography within reach.
+
+Map controls provide zoom, world reset, expansion, and a labeled Locate action for the selected volcano. At desktop widths, a small overview shows the current viewport and returns to the world when clicked. Phone controls form a horizontal row above the globe; search suggestions expand within the toolbar so country filtering and Fit matches remain accessible. Nearby overlapping markers select the nearest volcano and open a scrollable list on the map, with Zoom to nearby for closer inspection. Marker hit areas remain larger than the visible dots.
+
+The selected volcano is labeled on the map and summarized below it, with links to the full description and catalog. Filtered-out and off-screen selections have explicit recovery actions. Grid lines are optional and off by default; the Map guide explains gestures and keyboard shortcuts. Visible counts, continent labels on wider world views, and map-center coordinates support orientation. Coastlines remain approximate at high zoom; this is a reference atlas, not a street or hazard-routing map.
 
 ### World landscape rendering
 

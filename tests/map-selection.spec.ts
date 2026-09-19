@@ -29,7 +29,7 @@ test('map click selects a clustered volcano and connects to its description', as
 test('drag does not select; keyboard and filtered map selection work', async ({ page }) => {
   await page.goto('/');
   const semeruId = await page.locator('circle[data-volcano-id]').filter({ has: page.locator('title', { hasText: /^Semeru, / }) }).getAttribute('data-volcano-id');
-  await page.getByRole('textbox', { name: 'Search map volcanoes' }).fill(semeruId!);
+  await page.getByRole('combobox', { name: 'Search map volcanoes' }).fill(semeruId!);
   await page.getByRole('button', { name: 'Fit matches' }).click();
   const map = page.getByRole('group', { name: 'Interactive global volcano map', exact: true });
   await map.scrollIntoViewIfNeeded();
