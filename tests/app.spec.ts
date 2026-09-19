@@ -71,13 +71,11 @@ test("atlas, scenario, response, persistence, and community flow", async ({
 test("bad import reports actionable error", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: /Saved scenarios/ }).click();
-  await page
-    .locator("input[type=file]")
-    .setInputFiles({
-      name: "bad.json",
-      mimeType: "application/json",
-      buffer: Buffer.from('{"version":99}'),
-    });
+  await page.locator("input[type=file]").setInputFiles({
+    name: "bad.json",
+    mimeType: "application/json",
+    buffer: Buffer.from('{"version":99}'),
+  });
   await expect(page.getByRole("status")).toContainText("invalid");
 });
 test("sourced geology, full catalog pagination, and expanded search", async ({
@@ -274,11 +272,9 @@ test("interactive 3D eruption playback, camera, layers, and scenario inputs", as
     path: `/private/tmp/ashline-3d-${testInfo.project.name}.png`,
     fullPage: true,
   });
-  await page
-    .locator(".eruption-view")
-    .screenshot({
-      path: `/private/tmp/ashline-3d-panel-${testInfo.project.name}.png`,
-    });
+  await page.locator(".eruption-view").screenshot({
+    path: `/private/tmp/ashline-3d-panel-${testInfo.project.name}.png`,
+  });
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= window.innerWidth,
@@ -377,11 +373,9 @@ test("geographic DEM loads offline with source, true scale, and elevation inspec
     .selectOption("1");
   await page.getByRole("slider", { name: "Eruption timeline" }).fill("0");
   await page.locator(".eruption-view").scrollIntoViewIfNeeded();
-  await page
-    .locator(".eruption-view")
-    .screenshot({
-      path: `/private/tmp/ashline-terrain-${testInfo.project.name}.png`,
-    });
+  await page.locator(".eruption-view").screenshot({
+    path: `/private/tmp/ashline-terrain-${testInfo.project.name}.png`,
+  });
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= window.innerWidth,
@@ -484,11 +478,9 @@ test("ash settles on the DEM, persists, and scrubs reproducibly", async ({
     )
     .toBeGreaterThan(0);
   await page.locator(".eruption-view").scrollIntoViewIfNeeded();
-  await page
-    .locator(".eruption-view")
-    .screenshot({
-      path: `/private/tmp/ashline-settling-${testInfo.project.name}.png`,
-    });
+  await page.locator(".eruption-view").screenshot({
+    path: `/private/tmp/ashline-settling-${testInfo.project.name}.png`,
+  });
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= window.innerWidth,
@@ -628,7 +620,7 @@ test("global reference map supports search, focus, pan, pinch, and selection", a
   await map.press("Home");
   await expect(page.getByLabel("Global map zoom")).toHaveText("1.0×");
   await page
-    .getByRole("textbox", { name: "Search map volcanoes", exact: true })
+    .getByRole("combobox", { name: "Search map volcanoes", exact: true })
     .fill("Merapi");
   await expect(
     page.getByRole("textbox", { name: "Search volcanoes", exact: true }),
@@ -678,7 +670,7 @@ test("global reference map supports search, focus, pan, pinch, and selection", a
   await cdp.detach();
   await expect(page.getByLabel("Global map zoom")).toHaveText("1.8×");
   await page
-    .getByRole("textbox", { name: "Search map volcanoes", exact: true })
+    .getByRole("combobox", { name: "Search map volcanoes", exact: true })
     .fill("no-such-volcano-xyz");
   await expect(page.locator(".atlas-empty")).toBeVisible();
   await expect(
@@ -696,11 +688,9 @@ test("global reference map supports search, focus, pan, pinch, and selection", a
   await page
     .getByRole("button", { name: "Reset map zoom", exact: true })
     .click();
-  await page
-    .locator(".map-panel")
-    .screenshot({
-      path: `/private/tmp/ashline-global-${testInfo.project.name}.png`,
-    });
+  await page.locator(".map-panel").screenshot({
+    path: `/private/tmp/ashline-global-${testInfo.project.name}.png`,
+  });
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= window.innerWidth,
