@@ -175,7 +175,7 @@ export default function GlobalMap({ volcanoes, selected, onSelect, onReadDescrip
     <div className="atlas-toolbar">
       <div className="atlas-search-wrap" ref={searchWrap}>
         <div className="atlas-search">
-          <Search size={18} aria-hidden="true"/>
+          <Search size={18} aria-hidden="true" />
           <input ref={search} role="combobox" aria-label="Search map volcanoes" aria-autocomplete="list" aria-expanded={resultsOpen} aria-controls={`${id}-results`} aria-activedescendant={resultsOpen && activeIndex >= 0 ? `${id}-result-${activeIndex}` : undefined} autoComplete="off" placeholder="Search volcanoes, countries…" value={query}
             onFocus={() => setSearchOpen(true)}
             onChange={event => { onQuery(event.target.value); setSearchOpen(true); setSearchIndex(-1); setCandidates([]); }}
@@ -188,28 +188,28 @@ export default function GlobalMap({ volcanoes, selected, onSelect, onReadDescrip
                 setSearchIndex(next);
                 document.getElementById(`${id}-result-${next}`)?.scrollIntoView({ block: 'nearest' });
               } else if (event.key === 'Enter' && resultsOpen && suggestions.length) { event.preventDefault(); selectResult(suggestions[Math.max(0, activeIndex)]); }
-            }}/>
-          {query && <button aria-label="Clear map search" onClick={() => { onQuery(''); setSearchIndex(-1); search.current?.focus(); }}><X size={16}/></button>}
+            }} />
+          {query && <button aria-label="Clear map search" onClick={() => { onQuery(''); setSearchIndex(-1); search.current?.focus(); }}><X size={16} /></button>}
         </div>
         {resultsOpen && <div className="atlas-search-results">
           <p role="status">{points.length ? `${points.length.toLocaleString()} ${points.length === 1 ? 'match' : 'matches'}${points.length > suggestions.length ? ` · first ${suggestions.length} shown` : ''}` : 'No volcanoes found'}</p>
           <div id={`${id}-results`} role="listbox" aria-label="Matching volcanoes">
             {suggestions.map((volcano, index) => <button key={volcano.id} id={`${id}-result-${index}`} role="option" aria-selected={activeIndex === index} tabIndex={-1} onPointerDown={event => event.preventDefault()} onClick={() => selectResult(volcano)}>
-              <MapPin size={16} aria-hidden="true"/><span><strong>{volcano.name}</strong><small>{volcano.country} · {volcano.type}</small></span><ArrowRight size={15} aria-hidden="true"/>
+              <MapPin size={16} aria-hidden="true" /><span><strong>{volcano.name}</strong><small>{volcano.country} · {volcano.type}</small></span><ArrowRight size={15} aria-hidden="true" />
             </button>)}
           </div>
           {!points.length && <span className="atlas-search-no-results">Try a name like Merapi, or clear your filters.</span>}
         </div>}
       </div>
       <select className="atlas-country" aria-label="Map country filter" value={country} onChange={event => onCountry(event.target.value)}><option value="">All countries</option>{countries.map(name => <option key={name}>{name}</option>)}</select>
-      <button className="secondary atlas-fit" disabled={!points.length} onClick={() => { fitMatches(); setSearchOpen(false); }} title="Show all matching volcanoes"><Crosshair size={16}/> Fit matches</button>
+      <button className="secondary atlas-fit" disabled={!points.length} onClick={() => { fitMatches(); setSearchOpen(false); }} title="Show all matching volcanoes"><Crosshair size={16} /> Fit matches</button>
     </div>
     <div className="atlas-viewbar">
-      <label className="atlas-region"><Globe2 size={16} aria-hidden="true"/><span className="sr-only">Jump to region</span><select value={currentRegion} onChange={event => {
+      <label className="atlas-region"><Globe2 size={16} aria-hidden="true" /><span className="sr-only">Jump to region</span><select value={currentRegion} onChange={event => {
         if (event.target.value === 'world') reset();
         else { const region = regions.find(item => item.name === event.target.value)!; setCamera(bound({ x: region.point[0], y: region.point[1], zoom: region.zoom })); setCandidates([]); setHover(null); }
       }}><option value="world">World view</option>{regions.map(region => <option key={region.name}>{region.name}</option>)}<option value="custom" disabled>Custom view</option></select></label>
-      <div className="atlas-view-actions"><label><input type="checkbox" checked={showGrid} onChange={event => setShowGrid(event.target.checked)}/> Grid</label><button aria-expanded={showHelp} aria-controls={`${id}-guide`} onClick={() => setShowHelp(value => !value)}><HelpCircle size={16}/> Map guide</button></div>
+      <div className="atlas-view-actions"><label><input type="checkbox" checked={showGrid} onChange={event => setShowGrid(event.target.checked)} /> Grid</label><button aria-expanded={showHelp} aria-controls={`${id}-guide`} onClick={() => setShowHelp(value => !value)}><HelpCircle size={16} /> Map guide</button></div>
     </div>
     <div className="global-map-stage">
       <svg ref={svg} className={`global-map-canvas${hover ? ' has-marker-hover' : ''}`} viewBox={`0 0 ${size.width} ${size.height}`} role="group" tabIndex={0} aria-label="Interactive global volcano map" aria-describedby={`${id}-help`}
@@ -252,33 +252,33 @@ export default function GlobalMap({ volcanoes, selected, onSelect, onReadDescrip
           startGesture(); if (gesture.current) gesture.current.moved = true;
         }}
         onPointerCancel={() => { pointers.current.clear(); gesture.current = null; }} onPointerLeave={() => setHover(null)}>
-        <rect width={size.width} height={size.height} fill="#e7edeb"/>
-        <g transform={`translate(${tx},${ty}) scale(${scale})`}><path d={land} fill="#fbfcf8" stroke="#b7c8bc" strokeWidth={.8 / scale}/>{showGrid && <path d={grid} fill="none" stroke="#c8d4cd" strokeWidth={.6 / scale}/>}</g>
+        <rect width={size.width} height={size.height} fill="#e7edeb" />
+        <g transform={`translate(${tx},${ty}) scale(${scale})`}><path d={land} fill="#fbfcf8" stroke="#b7c8bc" strokeWidth={.8 / scale} />{showGrid && <path d={grid} fill="none" stroke="#c8d4cd" strokeWidth={.6 / scale} />}</g>
         {camera.zoom < 2 && size.width >= 480 && <g className="atlas-place-labels" aria-hidden="true" pointerEvents="none">{continentLabels.map(label => <text key={label.name} x={label.point[0] * scale + tx} y={label.point[1] * scale + ty} textAnchor="middle">{label.name}</text>)}</g>}
         {visible.filter(point => point.v.id !== selected.id).map(({ v, p }) => <circle key={v.id} data-volcano-id={v.id} cx={p[0] * scale + tx} cy={p[1] * scale + ty} r={hover?.id === v.id ? 7 : size.width < 480 && camera.zoom < 2 ? 3.2 : 4.5} fill={hover?.id === v.id ? '#b84e35' : '#527b65'} stroke="#fbfcf8" strokeWidth="1"><title>{v.name}, {v.country}</title></circle>)}
-        {selectedPoint && selectedVisible && <g transform={`translate(${selectedPoint.p[0] * scale + tx},${selectedPoint.p[1] * scale + ty})`} pointerEvents="none"><circle r="12" fill="#b84e3518" stroke="#b84e35" strokeWidth="1.5"/><circle r="5" fill="#b84e35" stroke="white" strokeWidth="1.5"/><text className="atlas-marker-label" y="-20" textAnchor="middle">{selected.name}</text></g>}
-        <path className="atlas-center" d={`M${size.width / 2 - 8} ${size.height / 2}h16M${size.width / 2} ${size.height / 2 - 8}v16`} stroke="#294e3e" strokeWidth="1" pointerEvents="none"/>
+        {selectedPoint && selectedVisible && <g transform={`translate(${selectedPoint.p[0] * scale + tx},${selectedPoint.p[1] * scale + ty})`} pointerEvents="none"><circle r="12" fill="#b84e3518" stroke="#b84e35" strokeWidth="1.5" /><circle r="5" fill="#b84e35" stroke="white" strokeWidth="1.5" /><text className="atlas-marker-label" y="-20" textAnchor="middle">{selected.name}</text></g>}
+        <path className="atlas-center" d={`M${size.width / 2 - 8} ${size.height / 2}h16M${size.width / 2} ${size.height / 2 - 8}v16`} stroke="#294e3e" strokeWidth="1" pointerEvents="none" />
       </svg>
       <div className="atlas-navigation" role="group" aria-label="Map navigation">
-        <span className="atlas-north" aria-label="North is up">N<ArrowDown size={15}/></span>
-        <div className="atlas-zoom-controls"><button aria-label="Zoom in" title="Zoom in (+)" disabled={camera.zoom >= 12} onClick={() => zoomBy(1.5)}><Plus size={19}/></button><span aria-label="Global map zoom">{camera.zoom.toFixed(1)}×</span><button aria-label="Zoom out" title="Zoom out (−)" disabled={camera.zoom <= 1} onClick={() => zoomBy(1 / 1.5)}><Minus size={19}/></button></div>
-        <div className="atlas-view-controls"><button aria-label="Reset map zoom" title="World view (Home)" onClick={reset}><Globe2 size={19}/></button><button aria-label={expanded ? 'Collapse map' : 'Expand map'} title={expanded ? 'Collapse map' : 'Expand map'} aria-pressed={expanded} onClick={onExpand}>{expanded ? <Shrink size={18}/> : <Expand size={18}/>}</button></div>
+        <span className="atlas-north" aria-label="North is up">N<ArrowDown size={15} /></span>
+        <div className="atlas-zoom-controls"><button aria-label="Zoom in" title="Zoom in (+)" disabled={camera.zoom >= 12} onClick={() => zoomBy(1.5)}><Plus size={19} /></button><span aria-label="Global map zoom">{camera.zoom.toFixed(1)}×</span><button aria-label="Zoom out" title="Zoom out (−)" disabled={camera.zoom <= 1} onClick={() => zoomBy(1 / 1.5)}><Minus size={19} /></button></div>
+        <div className="atlas-view-controls"><button aria-label="Reset map zoom" title="World view (Home)" onClick={reset}><Globe2 size={19} /></button><button aria-label={expanded ? 'Collapse map' : 'Expand map'} title={expanded ? 'Collapse map' : 'Expand map'} aria-pressed={expanded} onClick={onExpand}>{expanded ? <Shrink size={18} /> : <Expand size={18} />}</button></div>
       </div>
-      {hover && !matches.length && <div className="atlas-hover" aria-hidden="true"><MapPin size={16}/><div><strong>{hover.name}</strong><span>{hover.country} · Click to explore</span></div></div>}
-      {!points.length && <div className="atlas-empty"><Search size={23}/><strong>No matching volcanoes</strong><p>Try another name or remove your filters to explore the world.</p><button className="secondary" onClick={clearFilters}>Clear filters</button></div>}
-      {!!matches.length && <section className="atlas-pick-list" aria-label="Nearby volcanoes"><div className="atlas-pick-heading"><strong>{matches.length} nearby volcanoes</strong><button aria-label="Close map selection" onClick={() => { setCandidates([]); svg.current?.focus({ preventScroll: true }); }}><X size={16}/></button></div><p>Choose a volcano to preview.</p><ul>{matches.map(volcano => <li key={volcano.id}><button aria-pressed={volcano.id === selected.id} onClick={() => onSelect(volcano)}><span><strong>{volcano.name}</strong><small>{volcano.country} · {volcano.type}</small></span>{volcano.id === selected.id && <Check size={16} aria-label="Selected"/>}</button></li>)}</ul><button className="atlas-nearby-zoom" onClick={() => fitMatches(points.filter(point => candidates.includes(point.v.id)))}><Plus size={15}/> Zoom to nearby</button></section>}
-      <button className="atlas-locate" aria-label="Focus selected" disabled={!selectedPoint} title={selectedPoint ? `Center map on ${selected.name}` : 'Selected volcano is outside current filters'} onClick={() => { focusVolcano(selected); setCandidates([]); }}><Crosshair size={17}/><span>Locate {selected.name}</span></button>
-      {camera.zoom > 1.05 && size.width >= 480 && <button className="atlas-overview" aria-label="Return to world view" title="Return to world view" onClick={reset}><svg viewBox="0 0 980 530" aria-hidden="true"><path d={land} fill="#fbfcf8" stroke="#a5b8ac" strokeWidth="5"/><rect x={Math.max(0, -tx / scale)} y={Math.max(0, -ty / scale)} width={Math.min(980, size.width / scale)} height={Math.min(530, size.height / scale)} fill="#294e3e15" stroke="#294e3e" strokeWidth="10"/></svg><span>World overview</span></button>}
+      {hover && !matches.length && <div className="atlas-hover" aria-hidden="true"><MapPin size={16} /><div><strong>{hover.name}</strong><span>{hover.country} · Click to explore</span></div></div>}
+      {!points.length && <div className="atlas-empty"><Search size={23} /><strong>No matching volcanoes</strong><p>Try another name or remove your filters to explore the world.</p><button className="secondary" onClick={clearFilters}>Clear filters</button></div>}
+      {!!matches.length && <section className="atlas-pick-list" aria-label="Nearby volcanoes"><div className="atlas-pick-heading"><strong>{matches.length} nearby volcanoes</strong><button aria-label="Close map selection" onClick={() => { setCandidates([]); svg.current?.focus({ preventScroll: true }); }}><X size={16} /></button></div><p>Choose a volcano to preview.</p><ul>{matches.map(volcano => <li key={volcano.id}><button aria-pressed={volcano.id === selected.id} onClick={() => onSelect(volcano)}><span><strong>{volcano.name}</strong><small>{volcano.country} · {volcano.type}</small></span>{volcano.id === selected.id && <Check size={16} aria-label="Selected" />}</button></li>)}</ul><button className="atlas-nearby-zoom" onClick={() => fitMatches(points.filter(point => candidates.includes(point.v.id)))}><Plus size={15} /> Zoom to nearby</button></section>}
+      <button className="atlas-locate" aria-label="Focus selected" disabled={!selectedPoint} title={selectedPoint ? `Center map on ${selected.name}` : 'Selected volcano is outside current filters'} onClick={() => { focusVolcano(selected); setCandidates([]); }}><Crosshair size={17} /><span>Locate {selected.name}</span></button>
+      {camera.zoom > 1.05 && size.width >= 480 && <button className="atlas-overview" aria-label="Return to world view" title="Return to world view" onClick={reset}><svg viewBox="0 0 980 530" aria-hidden="true"><path d={land} fill="#fbfcf8" stroke="#a5b8ac" strokeWidth="5" /><rect x={Math.max(0, -tx / scale)} y={Math.max(0, -ty / scale)} width={Math.min(980, size.width / scale)} height={Math.min(530, size.height / scale)} fill="#294e3e15" stroke="#294e3e" strokeWidth="10" /></svg><span>World overview</span></button>}
     </div>
-    <div className="atlas-map-summary"><div className="atlas-legend"><span><i/> Volcano</span><span><i className="atlas-selected-key"/> Selected</span></div><span className="atlas-visible-count">{visible.length.toLocaleString()} of {points.length.toLocaleString()} in view</span>{filtered && <button onClick={clearFilters}>Clear filters <X size={13}/></button>}</div>
+    <div className="atlas-map-summary"><div className="atlas-legend"><span><i /> Volcano</span><span><i className="atlas-selected-key" /> Selected</span></div><span className="atlas-visible-count">{visible.length.toLocaleString()} of {points.length.toLocaleString()} in view</span>{filtered && <button onClick={clearFilters}>Clear filters <X size={13} /></button>}</div>
     <p className="sr-only" role="status">Selected {selected.name}, {selected.country}. Description updated below the map.</p>
     <section className="atlas-description" aria-label={`Description of ${selected.name}`}>
-      <div className="atlas-description-heading"><div><h3>{selected.name}</h3><span>{selected.country} · {coordinates(selected.lat, selected.lon)}</span></div><button className="text-button" onClick={onReadDescription}>Read full description <ArrowRight size={15}/></button></div>
+      <div className="atlas-description-heading"><div><h3>{selected.name}</h3><span>{selected.country} · {coordinates(selected.lat, selected.lon)}</span></div><button className="text-button" onClick={onReadDescription}>Read full description <ArrowRight size={15} /></button></div>
       {!selectedPoint && <p className="atlas-selection-note">Outside current filters. <button onClick={clearFilters}>Show all volcanoes</button></p>}
       {selectedPoint && !selectedVisible && <p className="atlas-selection-note">Outside this map view. <button onClick={() => focusVolcano(selected)}>Locate {selected.name}</button></p>}
       <p>{selected.summary?.trim() || 'No geological summary is available in this catalog snapshot. Open the source record below for further information.'}</p>
     </section>
-    <div className="atlas-map-footer"><span id={`${id}-help`}>Drag to pan · Pinch or double-click to zoom</span><a href="#volcano-catalog">Browse catalog <ArrowDown size={13}/></a></div>
+    <div className="atlas-map-footer"><span id={`${id}-help`}>Drag to pan · Pinch or double-click to zoom</span><a href="#volcano-catalog">Browse catalog <ArrowDown size={13} /></a></div>
     {showHelp && <div id={`${id}-guide`} className="atlas-map-help"><strong>Explore the atlas</strong><p>Click or tap a marker to select it. In crowded areas, choose from the nearby list or zoom closer. Search by name, country, region, or catalog number; use arrow keys and Enter to choose a result.</p><p>Drag to pan, pinch or double-click to zoom, or hold Ctrl/⌘ while scrolling. With the map focused: arrow keys pan, +/− zoom, Enter selects near the center, Home returns to the world, and Escape closes nearby choices.</p></div>}
     <div className="map-footer"><span>Natural Earth · approximate coastlines</span><span>{center && coordinates(center[1], center[0])} · map center</span></div>
   </>;
